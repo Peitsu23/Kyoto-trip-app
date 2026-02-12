@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 關西家族之旅</title>
+    
+    <!-- 載入外觀樣式與編譯工具 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        body {
+            background-color: #f4f4f6;
+            color: #333;
+            font-family: 'Helvetica Neue', Arial, 'LiHei Pro', '微軟正黑體', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overscroll-behavior-y: none;
+            margin: 0;
+            padding: 0;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- React 應用程式碼開始 -->
+    <script type="text/babel" data-type="module">
+        import * as React from 'https://esm.sh/react@18';
+        import { useState, useEffect } from 'https://esm.sh/react@18';
+        import { createRoot } from 'https://esm.sh/react-dom@18/client';
+        import { 
+            MapPin, Navigation, Coffee, ShoppingBag, Car, 
+            CloudSun, CloudRain, Phone, Plane, Bed, 
+            AlertCircle, Utensils, Info, ChevronRight, 
+            Map, Calendar, Clock, ArrowRight, ExternalLink,
+            Train, Bus, Footprints, Lightbulb
+        } from 'https://esm.sh/lucide-react@0.292.0';
+
+        // --- 旅遊資料 (加入真實高品質圖庫連結) ---
+        const tripData = {
+            general: {
+                title: "2026 關西家族之旅",
+                date: "2/13 - 2/19",
+                days: 7
+            },
+            itinerary: [
+                {
+                    day: 1, date: "2/13 (五)", location: "抵達大阪：南城初探",
+                    weather: { temp: "8°C", desc: "多雲時晴", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1590559899731-a382839cecd5?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "transit", time: "06:00", title: "抵達關西機場", desc: "辦理入境手續，準備搭乘機場接送或特急列車前往市區飯店。", dest: "The Lutheran Hotel 大阪", transit: { icon: Car, text: "預約機場接送 / 包車", time: "約 60 分" }, tips: "機場出關需排隊，請家人先將 VJW 畫面截圖準備好，可大幅加速通關時間。" },
+                        { type: "restaurant", time: "11:00", title: "黑門市場", desc: "安頓行李後前往。品嚐高橋豆漿、和牛壽喜燒。", dest: "黑門市場", transit: { icon: Train, text: "地鐵谷町線至「日本橋站」", time: "約 15 分" }, tips: "市場內人潮較多，請留意隨身物品；部分路段無座位，長輩若累了可尋找有附設內用區的店家稍作休息。", eventImage: "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?q=80&w=800&auto=format&fit=crop" },
+                        { type: "attraction", time: "15:00", title: "心齋橋 & 道頓堀", desc: "逛街採買，與著名的固力果跑跑人招牌合影。", dest: "道頓堀", transit: { icon: Footprints, text: "自黑門市場步行", time: "約 10 分" }, tips: "跑跑人看板前拍照人潮非常多，建議可以走到「戎橋」下方的木棧步道拍照，既安全又不會太擁擠。" }
+                    ]
+                },
+                {
+                    day: 2, date: "2/14 (六)", location: "歷史高峰與繁華夜",
+                    weather: { temp: "6°C", desc: "晴朗", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1534284483582-132d0611270b?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "attraction", time: "10:00", title: "大阪城天守閣", desc: "園區較大，步行較多請穿舒適鞋子。", dest: "大阪城天守閣", transit: { icon: Footprints, text: "自飯店步行前往", time: "約 15 分" }, tips: "大阪城腹地極大，從地鐵站走到天守閣有一段距離。若長輩走累了，可以搭乘園區內的付費遊園小火車代步。" },
+                        { type: "restaurant", time: "13:00", title: "鰻魚飯 (心齋橋附近)", desc: "預約代號：#A8892。補充體力的美味午餐。", dest: "心齋橋", transit: { icon: Train, text: "地鐵中央線轉御堂筋線", time: "約 20 分" }, tips: "日本餐廳通常要求「人數全部到齊」才能入座，請大家一起行動提早抵達喔！" },
+                        { type: "attraction", time: "16:30", title: "梅田藍天大廈", desc: "從地鐵站出站後，需步行穿越地下道，可欣賞百萬夜景。", dest: "梅田藍天大廈", transit: { icon: Train, text: "地鐵御堂筋線至「梅田站」", time: "約 15 分" }, tips: "前往頂樓展望台需轉乘一段較長的手扶梯。入夜後高空風很大且氣溫低，請務必幫長輩準備防風保暖外套。", eventImage: "https://images.unsplash.com/photo-1599667755518-e214db0347ec?q=80&w=800&auto=format&fit=crop" },
+                        { type: "restaurant", time: "18:30", title: "肉のあさつ (晚餐)", desc: "壽喜燒與壽司。吃飽後搭車回飯店休息。", dest: "肉のあさつ 梅田", transit: { icon: Footprints, text: "梅田市區內步行", time: "約 10 分" }, tips: "關西風味的壽喜燒口味較重、偏甜，可以向店員索取熱水或是點無糖烏龍茶搭配享用。" }
+                    ]
+                },
+                {
+                    day: 3, date: "2/15 (日)", location: "勝運祈福與移動至京都",
+                    weather: { temp: "9°C", desc: "陣雨", icon: <CloudRain size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1624253321171-1be53e12f5f4?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "attraction", time: "09:30", title: "勝尾寺", desc: "滿滿的祈福達摩，長輩若覺得轉車累可考慮從車站轉搭計程車。", dest: "勝尾寺", transit: { icon: Bus, text: "御堂筋線至千里中央轉公車", time: "約 60 分" }, tips: "位於山區，氣溫會比市區平地再低個 2-3 度，且今日可能有陣雨，請記得攜帶雨具並注意保暖。" },
+                        { type: "restaurant", time: "16:30", title: "燒肉萬兩", desc: "已訂位。極難預約的名店，請準時抵達。", dest: "燒肉萬兩 南森町", transit: { icon: Train, text: "搭乘地鐵返回市區", time: "約 45 分" }, tips: "人氣燒肉店內可能會有稍微濃郁的燒烤煙味，建議穿著方便清洗或不介意沾染味道的衣物。" },
+                        { type: "transit", time: "18:30", title: "搭車前往京都", desc: "帶著行李移動，搭乘快速列車直達京都車站。", dest: "京都車站", transit: { icon: Train, text: "JR 京都線 (新快速)", time: "約 30 分" }, tips: "JR 新快速列車無指定劃位（類似台灣區間快車），若遇到下班人潮可能需要稍作站立，請隨時留意長輩體力狀況。" }
+                    ]
+                },
+                {
+                    day: 4, date: "2/16 (一)", location: "經典京都：清水舞台與祇園",
+                    weather: { temp: "7°C", desc: "多雲", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "attraction", time: "09:30", title: "清水寺、二/三年坂", desc: "從車站搭計程車最輕鬆，直達清水坂周邊。", dest: "清水寺", transit: { icon: Car, text: "自京都車站搭乘計程車", time: "約 15 分 (1500円)" }, tips: "從仁王門走到本堂有許多階梯與石板斜坡，請穿著防滑好走的鞋子。二三年坂兩側商店多，是可以隨時停下休息的好地方。" },
+                        { type: "restaurant", time: "13:00", title: "奥丹湯豆腐", desc: "清水寺旁百年名店。預約代號：#OKT55", dest: "奥丹 清水", transit: { icon: Footprints, text: "清水寺周邊步行", time: "約 5 分" }, tips: "傳統日式座席可能需要脫鞋盤腿，若長輩膝蓋不適，入店時可先詢問店員是否有提供一般的桌椅座位。" },
+                        { type: "restaurant", time: "18:30", title: "Gion Duck Rice", desc: "祇園巷弄內的特色鴨肉飯。", dest: "Gion Duck Rice", transit: { icon: Footprints, text: "經二三年坂漫步至祇園", time: "約 20 分" }, tips: "餐廳隱藏在狹窄的巷弄內，外觀可能較不顯眼，建議開啟 Google Maps 步行導航仔細尋找。", eventImage: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" }
+                    ]
+                },
+                {
+                    day: 5, date: "2/17 (二)", location: "千本鳥居與宇治抹茶",
+                    weather: { temp: "5°C", desc: "晴朗", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "attraction", time: "09:30", title: "伏見稻荷大社", desc: "避開人潮拍攝綿延不絕的千本鳥居。", dest: "伏見稻荷大社", transit: { icon: Train, text: "JR 奈良線至「稻荷站」", time: "約 5 分" }, tips: "千本鳥居步道其實是一座山（稻荷山），長輩走到「奧社奉拜所」附近拍完照即可折返，不需全程爬完，請量力而為。" },
+                        { type: "attraction", time: "13:30", title: "平等院 & 宇治抹茶", desc: "前往抹茶的故鄉，品嚐在地名店甜點。", dest: "平等院", transit: { icon: Train, text: "JR 奈良線至「宇治站」", time: "約 20 分" }, tips: "入內參觀日本國寶建築通常需要脫鞋，二月份地板極為冰冷，強烈建議當天穿著較厚的襪子保暖且方便穿脫。", eventImage: "https://images.unsplash.com/photo-1524413840847-0785195ed843?q=80&w=800&auto=format&fit=crop" },
+                        { type: "restaurant", time: "18:30", title: "三嶋亭壽喜燒", desc: "高島屋分店。位於熱鬧的四條河原町周邊。", dest: "三嶋亭 高島屋", transit: { icon: Train, text: "京阪本線轉乘", time: "約 40 分" }, tips: "由於位於百貨公司內，請留意打烊時間通常較早（約晚上8點），吃飽後若要在周邊逛街需注意時間分配。" }
+                    ]
+                },
+                {
+                    day: 6, date: "2/18 (三)", location: "嵐山竹林與金閣寺",
+                    weather: { temp: "6°C", desc: "多雲", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "attraction", time: "11:00", title: "嵐山地區", desc: "逛竹林小徑、渡月橋，感受京都郊區之美。", dest: "嵐山竹林小徑", transit: { icon: Train, text: "JR 嵯峨野線至「嵯峨嵐山站」", time: "約 15 分" }, tips: "這區是京都超級熱門景點，人潮極多，建議一抵達就先前往竹林小徑，避開午後的人擠人。" },
+                        { type: "restaurant", time: "12:30", title: "松籟庵 (湯豆腐)", desc: "桂川畔頂級湯豆腐。吃完後準備前往金閣寺。", dest: "松籟庵", transit: { icon: Footprints, text: "沿桂川優雅步行", time: "約 15 分" }, tips: "餐廳位於桂川畔的隱密處，風景絕佳，但沿途可能有些許不平整的石階，請提醒長輩小心腳步。" },
+                        { type: "attraction", time: "14:30", title: "金閣寺", desc: "搭乘京都市巴士即可直達，欣賞夕陽下的金閣。", dest: "金閣寺", transit: { icon: Bus, text: "京都市巴士 11/93 號", time: "約 25 分" }, tips: "下午 3 點過後，陽光直射在金箔上是金閣寺最耀眼的時刻！拍照點人潮擁擠，請留意推擠並保護好隨身物品。", eventImage: "https://images.unsplash.com/photo-1601823984263-b87b59798b70?q=80&w=800&auto=format&fit=crop" }
+                    ]
+                },
+                {
+                    day: 7, date: "2/19 (四)", location: "回程",
+                    weather: { temp: "8°C", desc: "晴朗", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1552353617-3bfd679b10f5?q=80&w=800&auto=format&fit=crop",
+                    events: [
+                        { type: "transit", time: "09:30", title: "前往關西機場", desc: "帶著滿滿回憶與伴手禮，準備搭機返台。", dest: "關西國際機場", transit: { icon: Train, text: "JR 特急 Haruka 直達", time: "約 80 分" }, tips: "請務必提前至少 2.5 小時抵達機場，預留充足的時間處理行李托運、免稅店最後採買與退稅事宜。" }
+                    ]
+                }
+            ],
+            tools: {
+                flights: [
+                    { bound: "去程", route: "TPE → KIX", airline: "捷星日本 (Jetstar)", flightNo: "GK 050", date: "2/13 (五)", dep: "02:30", arr: "06:00", depTerm: "桃園 T1", arrTerm: "關西 T1", duration: "2h 30m" },
+                    { bound: "回程", route: "KIX → TPE", airline: "捷星日本 (Jetstar)", flightNo: "GK 055", date: "2/19 (四)", dep: "14:50", arr: "17:10", depTerm: "關西 T1", arrTerm: "桃園 T1", duration: "3h 20m" }
+                ],
+                hotels: [
+                    { name: "The Lutheran Hotel", city: "大阪", dates: "2/13 - 2/15", address: "大阪府大阪市中央区谷町3-1-6", phone: "06-6942-2281", map: "https://maps.google.com/?q=The+Lutheran+Hotel" },
+                    { name: "sequence KYOTO GOJO", city: "京都", dates: "2/15 - 2/19", address: "京都府京都市下京區五条烏丸町409", phone: "075-353-0031", map: "https://www.google.com/maps/place/sequence+KYOTO+GOJO/@29.7097612,122.9257727,6z/data=!4m9!3m8!1s0x60010939d089fc13:0xcdb3abdd38943d79!5m2!4m1!1i2!8m2!3d34.9979584!4d135.7593968!16s%2Fg%2F11frstxsmy?authuser=0&entry=ttu&g_ep=EgoyMDI2MDIwOS4wIKXMDSoASAFQAw%3D%3D" }
+                ],
+                emergency: [
+                    { name: "報警 (警察)", number: "110" },
+                    { name: "救護車 / 火警", number: "119" },
+                    { name: "台北駐大阪經濟文化辦事處", number: "06-6227-8623" }
+                ]
+            }
+        };
+
+        // --- 輔助函數：智慧標籤亮顯 ---
+        const SmartText = ({ text }) => {
+            if (!text) return null;
+            const processedHtml = text
+                .replace(/(預約代號|重要預約|預約)/g, '<span class="inline-block bg-stone-100 text-stone-700 px-2.5 py-0.5 rounded-lg font-bold text-xs mx-1 shadow-sm border border-stone-300">📌 $1</span>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-stone-900 font-black">$1</strong>');
+            return <div dangerouslySetInnerHTML={{ __html: processedHtml }} className="leading-relaxed text-stone-600 text-[15px]" />;
+        };
+
+        // --- UI 元件：行程卡片 ---
+        const EventCard = ({ event }) => {
+            const [showTips, setShowTips] = useState(false);
+            const config = {
+                attraction: { icon: <MapPin size={20}/>, color: "bg-stone-100 text-stone-600 border-stone-200" },
+                restaurant: { icon: <Utensils size={20}/>, color: "bg-orange-50 text-orange-600 border-orange-200" },
+                transit: { icon: <Train size={20}/>, color: "bg-sky-50 text-sky-600 border-sky-200" }
+            }[event.type || "attraction"];
+
+            const googleMapsTransitUrl = event.dest 
+                ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(event.dest)}&travelmode=transit`
+                : null;
+
+            return (
+                <div className="bg-white rounded-[1.5rem] p-5 shadow-sm border border-stone-200 relative group transition-all hover:shadow-md">
+                    {event.transit && (
+                        <div className="flex items-center gap-2 mb-3 bg-stone-50/80 w-fit px-3 py-1.5 rounded-[0.8rem] border border-stone-200/80">
+                            <event.transit.icon size={14} className="text-stone-500" />
+                            <span className="text-[11px] font-bold text-stone-700 tracking-wide">{event.transit.text}</span>
+                            {event.transit.time && (
+                                <span className="text-[10px] bg-white border border-stone-200 text-stone-500 px-1.5 py-0.5 rounded-md ml-1 font-mono tracking-tight">{event.transit.time}</span>
+                            )}
+                        </div>
+                    )}
+                    <div className="flex justify-between items-start mb-3">
+                        <div className="flex gap-3">
+                            <span className={`p-2 rounded-[0.8rem] ${config.color} border shadow-sm flex-shrink-0 h-fit mt-0.5`}>{config.icon}</span>
+                            <div className="pt-0.5">
+                                <span className="text-[11px] font-bold text-stone-400 tracking-wider mb-0.5 block font-mono">{event.time}</span>
+                                <h3 className="text-[17px] font-black text-stone-800 leading-tight">{event.title}</h3>
+                            </div>
+                        </div>
+                        {googleMapsTransitUrl && (
+                            <a href={googleMapsTransitUrl} target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center bg-stone-50 hover:bg-stone-100 text-stone-600 w-[52px] h-[52px] rounded-[1rem] transition-colors border border-stone-200 flex-shrink-0 shadow-sm active:scale-95">
+                                <Train size={18} className="mb-0.5" />
+                                <span className="text-[9px] font-bold tracking-wide">路線</span>
+                            </a>
+                        )}
+                    </div>
+                    {event.eventImage && (
+                        <div className="mt-3 mb-4 rounded-xl overflow-hidden border border-stone-200 h-36 relative shadow-sm bg-stone-100">
+                            <img src={event.eventImage} alt={event.title} className="w-full h-full object-cover animate-fade-in" />
+                        </div>
+                    )}
+                    <div className="mt-1 mb-4 pl-1">
+                        <SmartText text={event.desc} />
+                    </div>
+                    {event.tips && (
+                        <div className="mt-2">
+                            {showTips ? (
+                                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 animate-fade-in relative overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                                    <div className="flex items-center text-amber-600 font-bold mb-2 text-sm tracking-wide justify-between">
+                                        <div className="flex items-center"><Lightbulb size={16} className="mr-1.5" /> 行前貼心筆記</div>
+                                        <button onClick={() => setShowTips(false)} className="text-stone-400 hover:text-stone-600"><ChevronRight size={16} className="transform rotate-90" /></button>
+                                    </div>
+                                    <p className="leading-relaxed text-stone-600 text-[14px]">{event.tips}</p>
+                                </div>
+                            ) : (
+                                <button onClick={() => setShowTips(true)} className="w-full flex items-center justify-center bg-white hover:bg-stone-50 text-stone-500 py-3 rounded-xl text-[13px] font-bold transition-colors shadow-sm active:scale-95 border border-stone-200">
+                                    <Lightbulb size={16} className="mr-2 text-amber-500"/> 展開貼心提醒
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // --- 主元件 ---
+        const KansaiDriveApp = () => {
+            const [activeTab, setActiveTab] = useState('itinerary');
+            const [selectedDay, setSelectedDay] = useState(1);
+            const currentDayData = tripData.itinerary.find(d => d.day === selectedDay);
+
+            return (
+                <div className="min-h-screen max-w-md mx-auto bg-[#f4f4f6] text-gray-800 font-sans relative pb-24 shadow-2xl overflow-hidden sm:rounded-3xl sm:border-8 sm:border-gray-900 sm:my-8">
+                    <header className="bg-white px-6 pt-12 pb-4 shadow-sm sticky top-0 z-40">
+                        <h1 className="text-2xl font-black text-gray-900 tracking-tight">{tripData.general.title}</h1>
+                        <p className="text-sm text-stone-500 font-medium mt-1">{tripData.general.date} · 大眾運輸版</p>
+                    </header>
+
+                    <main className="p-4 h-[calc(100vh-160px)] overflow-y-auto no-scrollbar">
+                        {activeTab === 'itinerary' && (
+                            <div className="animate-fade-in pb-8">
+                                <div className="pt-2 pb-4">
+                                    <h2 className="text-2xl font-black text-stone-800 tracking-wide">行程導航</h2>
+                                    <p className="text-stone-500 text-sm mt-1">精準掌握乘車與步行路線</p>
+                                </div>
+                                <div className="flex overflow-x-auto no-scrollbar gap-3 mb-6 pb-2 -mx-4 px-4">
+                                    {tripData.itinerary.map(d => (
+                                        <button 
+                                            key={d.day} onClick={() => setSelectedDay(d.day)}
+                                            className={`flex-shrink-0 flex flex-col items-center justify-center w-16 h-[5.5rem] rounded-[1.25rem] transition-all duration-300 ${selectedDay === d.day ? 'bg-stone-800 text-stone-50 shadow-md scale-105' : 'bg-white text-stone-400 border border-stone-200 hover:bg-stone-50'}`}
+                                        >
+                                            <span className="text-[10px] font-bold tracking-widest opacity-80 mb-1">DAY {d.day}</span>
+                                            <span className="text-xl font-black">{d.date.split(' ')[0]}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="bg-white rounded-[1.5rem] mb-8 shadow-sm border border-stone-200 overflow-hidden relative">
+                                    {currentDayData.heroImage && (
+                                        <div className="w-full h-44 relative bg-stone-200">
+                                            <img src={currentDayData.heroImage} alt={currentDayData.location} className="w-full h-full object-cover animate-fade-in" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 to-transparent"></div>
+                                        </div>
+                                    )}
+                                    <div className="px-5 pb-5 pt-2 flex items-center justify-between bg-white relative">
+                                        <div className="flex items-center gap-4">
+                                            <div className="bg-stone-100 p-3 rounded-[1rem] text-stone-800 shadow-sm z-10 -mt-10 border-4 border-white relative flex-shrink-0"><Map size={22} /></div>
+                                            <div className="z-10 mt-1">
+                                                <p className="text-[10px] text-stone-400 font-bold tracking-widest mb-0.5">今日區域</p>
+                                                <h2 className="text-lg font-black text-stone-800 tracking-wide leading-tight">{currentDayData.location}</h2>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col items-end pl-3 border-l border-stone-100 z-10 mt-1">
+                                            <span className="text-[10px] text-stone-400 font-bold tracking-widest mb-1">氣溫</span>
+                                            <div className="flex items-center gap-1.5 text-stone-800 font-black">
+                                                {currentDayData.weather.icon}
+                                                <span className="text-xl">{currentDayData.weather.temp}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="relative border-l-2 border-dashed border-stone-200 ml-4 py-2 space-y-6">
+                                    {currentDayData.events.map((evt, idx) => (
+                                        <div key={idx} className="relative pl-6 pr-1">
+                                            <div className="absolute top-[1.25rem] -left-[7px] w-3 h-3 bg-white border-4 border-stone-800 rounded-full shadow-sm z-10"></div>
+                                            <EventCard event={evt} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        {activeTab === 'tools' && (
+                            <div className="animate-fade-in space-y-8 pb-8">
+                                <div className="pt-2 pb-2">
+                                    <h2 className="text-2xl font-black text-stone-800 tracking-wide">實用工具</h2>
+                                    <p className="text-stone-500 text-sm mt-1">航班、住宿與緊急聯絡資訊</p>
+                                </div>
+                                <section className="space-y-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="bg-stone-800 p-1.5 rounded-lg text-stone-50"><Plane size={18}/></div>
+                                        <h3 className="text-lg font-bold text-stone-800">航班資訊</h3>
+                                    </div>
+                                    {tripData.tools.flights.map((flight, idx) => (
+                                        <div key={idx} className="bg-white rounded-[1.5rem] p-5 border border-stone-200 shadow-sm relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 bg-stone-100 text-stone-600 text-[10px] font-bold px-3 py-1.5 rounded-bl-[1rem] tracking-widest">{flight.bound}</div>
+                                            <div className="text-xs font-bold text-stone-400 mb-5 tracking-wide">{flight.airline} · {flight.flightNo} · {flight.date}</div>
+                                            <div className="flex justify-between items-center relative px-2">
+                                                <div className="absolute left-[3.5rem] right-[3.5rem] top-1/2 -translate-y-1/2 border-t-2 border-dashed border-stone-200 z-0"></div>
+                                                <div className="text-center bg-white z-10 pr-3"><div className="text-3xl font-black text-stone-800">{flight.dep}</div><div className="text-[10px] font-bold text-stone-400 mt-1">{flight.depTerm}</div></div>
+                                                <div className="bg-white z-10 px-2 flex flex-col items-center mt-[-10px]"><Plane size={18} className="text-stone-300 transform rotate-45 mb-1" /><div className="text-[10px] font-bold text-stone-400 bg-stone-50 px-2 py-0.5 rounded-full">{flight.duration}</div></div>
+                                                <div className="text-center bg-white z-10 pl-3"><div className="text-3xl font-black text-stone-800">{flight.arr}</div><div className="text-[10px] font-bold text-stone-400 mt-1">{flight.arrTerm}</div></div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </section>
+                                <section className="space-y-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="bg-stone-800 p-1.5 rounded-lg text-stone-50"><Bed size={18}/></div>
+                                        <h3 className="text-lg font-bold text-stone-800">住宿資訊</h3>
+                                    </div>
+                                    {tripData.tools.hotels.map((hotel, idx) => (
+                                        <div key={idx} className="bg-white rounded-[1.5rem] p-5 border border-stone-200 shadow-sm relative">
+                                            <div className="flex justify-between items-start mb-3">
+                                                <div><span className="inline-block px-2.5 py-1 bg-stone-100 text-stone-600 text-[10px] font-bold rounded-lg mb-2">{hotel.city} · {hotel.dates}</span><h4 className="text-[17px] font-bold text-stone-800 leading-tight pr-4">{hotel.name}</h4></div>
+                                            </div>
+                                            <p className="text-xs text-stone-500 mb-5 leading-relaxed flex items-start"><MapPin size={14} className="mr-1 mt-0.5 flex-shrink-0 opacity-70"/> {hotel.address}</p>
+                                            <div className="flex gap-3">
+                                                {hotel.phone && (<a href={`tel:${hotel.phone}`} className="flex-1 flex items-center justify-center bg-stone-50 hover:bg-stone-100 text-stone-700 py-3 rounded-xl text-xs font-bold transition-colors border border-stone-200"><Phone size={14} className="mr-2"/> 聯絡飯店</a>)}
+                                                <a href={hotel.map} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-stone-800 hover:bg-stone-900 text-stone-50 py-3 rounded-xl text-xs font-bold transition-colors shadow-md"><Navigation size={14} className="mr-2"/> 開啟導航</a>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </section>
+                                <section className="space-y-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="bg-red-50 p-1.5 rounded-lg text-red-500"><AlertCircle size={18}/></div>
+                                        <h3 className="text-lg font-bold text-stone-800">緊急聯絡</h3>
+                                    </div>
+                                    <div className="bg-white rounded-[1.5rem] p-2 border border-stone-200 shadow-sm">
+                                        {tripData.tools.emergency.map((em, idx) => (
+                                            <a key={idx} href={`tel:${em.number}`} className="flex items-center justify-between p-4 hover:bg-stone-50 rounded-xl transition-colors group">
+                                                <div className="flex flex-col"><span className="text-sm font-bold text-stone-800">{em.name}</span><span className="text-lg font-black text-red-500 font-mono mt-0.5">{em.number}</span></div>
+                                                <div className="bg-stone-100 p-2 rounded-full text-stone-400 group-hover:bg-red-50 group-hover:text-red-500 transition-colors"><Phone size={16} /></div>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
+                        )}
+                    </main>
+
+                    <nav className="absolute bottom-0 w-full bg-white/80 backdrop-blur-lg border-t border-gray-200 pb-[env(safe-area-inset-bottom,20px)] pt-3 px-6 flex justify-around items-center z-50">
+                        <button onClick={() => setActiveTab('itinerary')} className={`flex flex-col items-center gap-1 transition-colors ${activeTab === 'itinerary' ? 'text-gray-900' : 'text-gray-400'}`}>
+                            <Calendar size={24} className={activeTab === 'itinerary' ? 'fill-gray-100' : ''}/><span className="text-[10px] font-bold">行程導航</span>
+                        </button>
+                        <div className="relative -top-6">
+                            <div className="bg-stone-800 text-stone-50 p-4 rounded-full shadow-lg shadow-stone-300 flex items-center justify-center"><Train size={28} /></div>
+                        </div>
+                        <button onClick={() => setActiveTab('tools')} className={`flex flex-col items-center gap-1 transition-colors ${activeTab === 'tools' ? 'text-gray-900' : 'text-gray-400'}`}>
+                            <Info size={24} className={activeTab === 'tools' ? 'fill-gray-100' : ''}/><span className="text-[10px] font-bold">實用工具</span>
+                        </button>
+                    </nav>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<KansaiDriveApp />);
+    </script>
+</body>
+</html>
