@@ -51,72 +51,82 @@
             },
             itinerary: [
                 {
-                    day: 1, date: "2/13 (五)", location: "抵達大阪：南城初探",
+                    day: 1, date: "2/13 (五)", location: "抵達大阪：南城文化初探",
                     weather: { temp: "8°C", desc: "多雲時晴", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1670983245226-802d66ea5fdd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "transit", time: "06:00", title: "抵達關西機場", desc: "辦理入境手續，準備搭乘機場接送或特急列車前往市區飯店。", dest: "The Lutheran Hotel 大阪", transit: { icon: Car, text: "預約機場接送 / 包車", time: "約 60 分" }, tips: "機場出關需排隊，請家人先將 VJW 畫面截圖準備好，可大幅加速通關時間。" },
-                        { type: "restaurant", time: "11:00", title: "黑門市場", desc: "安頓行李後前往。品嚐高橋豆漿、和牛壽喜燒。", dest: "黑門市場", transit: { icon: Train, text: "地鐵谷町線至「日本橋站」", time: "約 15 分" }, tips: "市場內人潮較多，請留意隨身物品；部分路段無座位，長輩若累了可尋找有附設內用區的店家稍作休息。", eventImage: "https://plus.unsplash.com/premium_photo-1733353232022-f55baef22c5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" },
-                        { type: "attraction", time: "15:00", title: "心齋橋 & 道頓堀", desc: "逛街採買，與著名的固力果跑跑人招牌合影。", dest: "道頓堀", transit: { icon: Footprints, text: "自黑門市場步行", time: "約 10 分" }, tips: "跑跑人看板前拍照人潮非常多，建議可以走到「戎橋」下方的木棧步道拍照，既安全又不會太擁擠。" }
+                        { type: "transit", time: "06:00", title: "抵達關西機場", desc: "機場接送前往 The Lutheran 飯店。", dest: "The Lutheran Hotel", transit: { icon: Car, text: "機場接送", time: "約 60 分" } },
+                        { type: "attraction", time: "11:00 - 12:30", title: "黑門市場", desc: "高橋豆漿、和牛壽喜燒，並可安排章魚燒等小吃。", dest: "黑門市場", transit: { icon: Footprints, text: "步行 / 計程車", time: "約 10 分" } },
+                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：牛舌的檸檬", desc: "中午用餐時段。", dest: "牛舌的檸檬" },
+                        { type: "hotel", time: "14:00 - 15:00", title: "飯店 Check-in & 休息", desc: "建議住難波區，先補眠恢復體力。", dest: "難波", transit: { icon: Bed, text: "入住" } },
+                        { type: "shopping", time: "15:00 - 16:30", title: "心齋橋", desc: "可逛大丸百貨、PARCO、MooKEN 泡芙。", dest: "心齋橋" },
+                        { type: "shopping", time: "16:30 - 20:00", title: "道頓堀", desc: "月化粧、難波 City、UNIQLO / Zara / GU，並拍跑跑人。", dest: "道頓堀" },
+                        { type: "restaurant", time: "20:30 - 22:00", title: "晚餐（待確定）", desc: "候選：厲害的鰻魚料理店 / 心齋橋天婦羅。", dest: "心齋橋" }
                     ]
                 },
                 {
-                    day: 2, date: "2/14 (六)", location: "歷史高峰與繁華夜",
+                    day: 2, date: "2/14 (六)", location: "歷史高峰：大阪城與梅田繁華夜",
                     weather: { temp: "6°C", desc: "晴朗", icon: <CloudSun size={20}/> },
                     heroImage: "https://plus.unsplash.com/premium_photo-1723983555971-8dafb9ae7265?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "10:00", title: "大阪城天守閣", desc: "園區較大，步行較多請穿舒適鞋子。", dest: "大阪城天守閣", transit: { icon: Footprints, text: "自飯店步行前往", time: "約 15 分" }, tips: "大阪城腹地極大，從地鐵站走到天守閣有一段距離。若長輩走累了，可以搭乘園區內的付費遊園小火車代步。" },
-                        { type: "restaurant", time: "13:00", title: "鰻魚飯 (心齋橋附近)", desc: "預約代號：#A8892。補充體力的美味午餐。", dest: "心齋橋", transit: { icon: Train, text: "地鐵中央線轉御堂筋線", time: "約 20 分" }, tips: "日本餐廳通常要求「人數全部到齊」才能入座，請大家一起行動提早抵達喔！" },
-                        { type: "attraction", time: "16:30", title: "梅田藍天大廈", desc: "從地鐵站出站後，需步行穿越地下道，可欣賞百萬夜景。", dest: "梅田藍天大廈", transit: { icon: Train, text: "地鐵御堂筋線至「梅田站」", time: "約 15 分" }, tips: "前往頂樓展望台需轉乘一段較長的手扶梯。入夜後高空風很大且氣溫低，請務必幫長輩準備防風保暖外套。", eventImage: "https://plus.unsplash.com/premium_photo-1733266930604-74e68aff2baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" },
-                        { type: "restaurant", time: "18:30", title: "肉のあさつ (晚餐)", desc: "壽喜燒與壽司。吃飽後搭車回飯店休息。", dest: "肉のあさつ 梅田", transit: { icon: Footprints, text: "梅田市區內步行", time: "約 10 分" }, tips: "關西風味的壽喜燒口味較重、偏甜，可以向店員索取熱水或是點無糖烏龍茶搭配享用。" }
+                        { type: "attraction", time: "10:00 - 12:30", title: "大阪城天守閣", desc: "搭電梯直達頂層，欣賞戰國歷史建築。", dest: "大阪城" },
+                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：心齋橋附近鰻魚飯", desc: "地圖連結已備註於行程。", dest: "心齋橋" },
+                        { type: "attraction", time: "14:30 - 16:30", title: "四天王寺、通天閣", desc: "走訪日本最古老官立寺廟與五重塔。", dest: "四天王寺 / 通天閣" },
+                        { type: "attraction", time: "16:30 - 18:30", title: "梅田藍天大廈空中庭園", desc: "拍攝 360 度環繞夜景，並可逛阪急百貨、Grand Front Osaka。", dest: "梅田" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：壽喜燒", desc: "uOs habu-hatsu-shabu & Sukiyaki & Sushi / 其他候選：ゆめまる、利久牛舌。", dest: "梅田" }
                     ]
                 },
                 {
-                    day: 3, date: "2/15 (日)", location: "勝運祈福與移動至京都",
-                    weather: { temp: "9°C", desc: "陣雨", icon: <CloudRain size={20}/> },
-                    heroImage: "https://plus.unsplash.com/premium_photo-1742948213097-7b1d9078bb1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
+                    day: 3, date: "2/15 (日)", location: "庶民與摩登：四天王寺與第一高樓",
+                    weather: { temp: "7°C", desc: "晴轉陰", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1558862107-d49ef2a04d72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30", title: "勝尾寺", desc: "滿滿的祈福達摩，長輩若覺得轉車累可考慮從車站轉搭計程車。", dest: "勝尾寺", transit: { icon: Bus, text: "御堂筋線至千里中央轉公車", time: "約 60 分" }, tips: "位於山區，氣溫會比市區平地再低個 2-3 度，且今日可能有陣雨，請記得攜帶雨具並注意保暖。" },
-                        { type: "restaurant", time: "16:30", title: "燒肉萬兩", desc: "已訂位。極難預約的名店，請準時抵達。", dest: "燒肉萬兩 南森町", transit: { icon: Train, text: "搭乘地鐵返回市區", time: "約 45 分" }, tips: "人氣燒肉店內可能會有稍微濃郁的燒烤煙味，建議穿著方便清洗或不介意沾染味道的衣物。" },
-                        { type: "transit", time: "18:30", title: "搭車前往京都", desc: "帶著行李移動，搭乘快速列車直達京都車站。", dest: "京都車站", transit: { icon: Train, text: "JR 京都線 (新快速)", time: "約 30 分" }, tips: "JR 新快速列車無指定劃位（類似台灣區間快車），若遇到下班人潮可能需要稍作站立，請隨時留意長輩體力狀況。" }
+                        { type: "attraction", time: "09:30 - 11:30", title: "勝尾寺", desc: "早上寺院參訪。", dest: "勝尾寺" },
+                        { type: "restaurant", time: "12:00 - 13:30", title: "午餐、下午茶：wad 茶藝館", desc: "安排午餐與茶點休息。", dest: "wad 茶藝館" },
+                        { type: "restaurant", time: "16:30 - 18:00", title: "晚餐：燒肉萬兩（已訂位）", desc: "晚餐時段已訂位。", dest: "燒肉萬兩" },
+                        { type: "transit", time: "18:30 - 21:30", title: "移動至京都", desc: "搭乘 JR 快速前往京都車站。", dest: "京都車站", transit: { icon: Train, text: "JR 快速", time: "約 3 小時含轉移" } }
                     ]
                 },
                 {
                     day: 4, date: "2/16 (一)", location: "經典京都：清水舞台與祇園",
-                    weather: { temp: "7°C", desc: "多雲", icon: <CloudSun size={20}/> },
-                    heroImage: "https://images.unsplash.com/photo-1633003241543-6d7cbe77a9dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
+                    weather: { temp: "8°C", desc: "多雲", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30", title: "清水寺、二/三年坂", desc: "從車站搭計程車最輕鬆，直達清水坂周邊。", dest: "清水寺", transit: { icon: Car, text: "自京都車站搭乘計程車", time: "約 15 分 (1500円)" }, tips: "從仁王門走到本堂有許多階梯與石板斜坡，請穿著防滑好走的鞋子。二三年坂兩側商店多，是可以隨時停下休息的好地方。" },
-                        { type: "restaurant", time: "13:00", title: "奥丹湯豆腐", desc: "清水寺旁百年名店。預約代號：#OKT55", dest: "奥丹 清水", transit: { icon: Footprints, text: "清水寺周邊步行", time: "約 5 分" }, tips: "傳統日式座席可能需要脫鞋盤腿，若長輩膝蓋不適，入店時可先詢問店員是否有提供一般的桌椅座位。" },
-                        { type: "restaurant", time: "18:30", title: "Gion Duck Rice", desc: "祇園巷弄內的特色鴨肉飯。", dest: "Gion Duck Rice", transit: { icon: Footprints, text: "經二三年坂漫步至祇園", time: "約 20 分" }, tips: "餐廳隱藏在狹窄的巷弄內，外觀可能較不顯眼，建議開啟 Google Maps 步行導航仔細尋找。", eventImage: "https://images.unsplash.com/photo-1768473470516-181e4b970d7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" }
+                        { type: "attraction", time: "09:30 - 12:30", title: "清水寺、二/三年坂", desc: "京都經典街區散策。", dest: "清水寺" },
+                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：奧丹湯豆腐", desc: "清水寺旁百年名店。", dest: "奧丹" },
+                        { type: "attraction", time: "15:00 - 17:30", title: "八坂神社、下鴨神社", desc: "參拜並可挑選御守。", dest: "八坂神社 / 下鴨神社" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：Gion Duck Rice", desc: "晚餐時段。", dest: "祇園" }
                     ]
                 },
                 {
-                    day: 5, date: "2/17 (二)", location: "千本鳥居與宇治抹茶",
-                    weather: { temp: "5°C", desc: "晴朗", icon: <CloudSun size={20}/> },
-                    heroImage: "https://plus.unsplash.com/premium_photo-1723669629708-0de9b27820b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
+                    day: 5, date: "2/17 (二)", location: "千本鳥居與京都廚房：伏見與錦市場",
+                    weather: { temp: "9°C", desc: "晴時多雲", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1624253321171-1be53e12f5f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30", title: "伏見稻荷大社", desc: "避開人潮拍攝綿延不絕的千本鳥居。", dest: "伏見稻荷大社", transit: { icon: Train, text: "JR 奈良線至「稻荷站」", time: "約 5 分" }, tips: "千本鳥居步道其實是一座山（稻荷山），長輩走到「奧社奉拜所」附近拍完照即可折返，不需全程爬完，請量力而為。" },
-                        { type: "attraction", time: "13:30", title: "平等院 & 宇治抹茶", desc: "前往抹茶的故鄉，品嚐在地名店甜點。", dest: "平等院", transit: { icon: Train, text: "JR 奈良線至「宇治站」", time: "約 20 分" }, tips: "入內參觀日本國寶建築通常需要脫鞋，二月份地板極為冰冷，強烈建議當天穿著較厚的襪子保暖且方便穿脫。", eventImage: "https://images.unsplash.com/photo-1720573165905-c99f7d491b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" },
-                        { type: "restaurant", time: "18:30", title: "三嶋亭壽喜燒", desc: "高島屋分店。位於熱鬧的四條河原町周邊。", dest: "三嶋亭 高島屋", transit: { icon: Train, text: "京阪本線轉乘", time: "約 40 分" }, tips: "由於位於百貨公司內，請留意打烊時間通常較早（約晚上8點），吃飽後若要在周邊逛街需注意時間分配。" }
+                        { type: "attraction", time: "09:30 - 11:30", title: "伏見稻荷大社", desc: "拍攝千本鳥居。", dest: "伏見稻荷大社" },
+                        { type: "restaurant", time: "12:00 - 13:30", title: "錦市場（景點 / 午餐）", desc: "京都廚房在地美食巡禮。", dest: "錦市場" },
+                        { type: "attraction", time: "13:30 - 14:30", title: "平等院", desc: "宇治經典寺院。", dest: "平等院" },
+                        { type: "attraction", time: "14:30 - 17:30", title: "宇治抹茶", desc: "中村藤吉本店、抹茶巴菲與手刷體驗。", dest: "宇治" },
+                        { type: "attraction", time: "17:30 - 18:30", title: "伏水酒藏小路", desc: "品嚐日本酒，感受伏見老街酒造氛圍。", dest: "伏見" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：三嶋亭壽喜燒（高島屋分店）", desc: "分店價格較親民且品質佳。", dest: "高島屋" }
                     ]
                 },
                 {
-                    day: 6, date: "2/18 (三)", location: "嵐山竹林與金閣寺",
-                    weather: { temp: "6°C", desc: "多雲", icon: <CloudSun size={20}/> },
-                    heroImage: "https://plus.unsplash.com/premium_photo-1749740735949-c86179d4f6f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
+                    day: 6, date: "2/18 (三)", location: "京都美學：嵐山竹林與金閣寺",
+                    weather: { temp: "8°C", desc: "多雲", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1578469645742-46cae010e5d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "11:00", title: "嵐山地區", desc: "逛竹林小徑、渡月橋，感受京都郊區之美。", dest: "嵐山竹林小徑", transit: { icon: Train, text: "JR 嵯峨野線至「嵯峨嵐山站」", time: "約 15 分" }, tips: "這區是京都超級熱門景點，人潮極多，建議一抵達就先前往竹林小徑，避開午後的人擠人。" },
-                        { type: "restaurant", time: "12:30", title: "松籟庵 (湯豆腐)", desc: "桂川畔頂級湯豆腐。吃完後準備前往金閣寺。", dest: "松籟庵", transit: { icon: Footprints, text: "沿桂川優雅步行", time: "約 15 分" }, tips: "餐廳位於桂川畔的隱密處，風景絕佳，但沿途可能有些許不平整的石階，請提醒長輩小心腳步。" },
-                        { type: "attraction", time: "14:30", title: "金閣寺", desc: "搭乘京都市巴士即可直達，欣賞夕陽下的金閣。", dest: "金閣寺", transit: { icon: Bus, text: "京都市巴士 11/93 號", time: "約 25 分" }, tips: "下午 3 點過後，陽光直射在金箔上是金閣寺最耀眼的時刻！拍照點人潮擁擠，請留意推擠並保護好隨身物品。", eventImage: "https://plus.unsplash.com/premium_photo-1749733078922-8f0a81fde7d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200" }
+                        { type: "attraction", time: "11:00 - 14:00", title: "嵐山地區", desc: "竹林小徑、天龍寺、渡月橋。", dest: "嵐山" },
+                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：松籟庵（湯豆腐）", desc: "桂川畔湯豆腐名店。", dest: "松籟庵" },
+                        { type: "attraction", time: "14:30 - 16:30", title: "金閣寺", desc: "北山文化代表景點。", dest: "金閣寺" }
                     ]
                 },
                 {
-                    day: 7, date: "2/19 (四)", location: "回程",
-                    weather: { temp: "8°C", desc: "晴朗", icon: <CloudSun size={20}/> },
-                    heroImage: "https://plus.unsplash.com/premium_photo-1736568429435-87cecd0b2f17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
+                    day: 7, date: "2/19 (四)", location: "最後的京都儀式感：東寺與回程",
+                    weather: { temp: "7°C", desc: "晴", icon: <CloudSun size={20}/> },
+                    heroImage: "https://images.unsplash.com/photo-1492571350019-22de08371fd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "transit", time: "09:30", title: "前往關西機場", desc: "帶著滿滿回憶與伴手禮，準備搭機返台。", dest: "關西國際機場", transit: { icon: Train, text: "JR 特急 Haruka 直達", time: "約 80 分" }, tips: "請務必提前至少 2.5 小時抵達機場，預留充足的時間處理行李托運、免稅店最後採買與退稅事宜。" }
+                        { type: "transit", time: "09:30 - 11:30", title: "前往機場", desc: "搭乘 JR 特急 Haruka 直達機場，準備返程。", dest: "關西機場", transit: { icon: Train, text: "JR Haruka", time: "約 90 分" } }
                     ]
                 }
             ],
@@ -152,7 +162,9 @@
             const config = {
                 attraction: { icon: <MapPin size={20}/>, color: "bg-stone-100 text-stone-600 border-stone-200" },
                 restaurant: { icon: <Utensils size={20}/>, color: "bg-orange-50 text-orange-600 border-orange-200" },
-                transit: { icon: <Train size={20}/>, color: "bg-sky-50 text-sky-600 border-sky-200" }
+                transit: { icon: <Train size={20}/>, color: "bg-sky-50 text-sky-600 border-sky-200" },
+                hotel: { icon: <Bed size={20}/>, color: "bg-violet-50 text-violet-600 border-violet-200" },
+                shopping: { icon: <ShoppingBag size={20}/>, color: "bg-emerald-50 text-emerald-600 border-emerald-200" }
             }[event.type || "attraction"];
 
             const googleMapsTransitUrl = event.dest 
@@ -160,7 +172,7 @@
                 : null;
 
             return (
-                <div className="bg-white rounded-[1.5rem] p-5 shadow-sm border border-stone-200 relative group transition-all hover:shadow-md">
+                <div className="bg-white rounded-[1.25rem] p-4 shadow-sm border border-stone-200 relative group transition-all hover:shadow-md">
                     {event.transit && (
                         <div className="flex items-center gap-2 mb-3 bg-stone-50/80 w-fit px-3 py-1.5 rounded-[0.8rem] border border-stone-200/80">
                             <event.transit.icon size={14} className="text-stone-500" />
@@ -175,7 +187,7 @@
                             <span className={`p-2 rounded-[0.8rem] ${config.color} border shadow-sm flex-shrink-0 h-fit mt-0.5`}>{config.icon}</span>
                             <div className="pt-0.5">
                                 <span className="text-[11px] font-bold text-stone-400 tracking-wider mb-0.5 block font-mono">{event.time}</span>
-                                <h3 className="text-[17px] font-black text-stone-800 leading-tight">{event.title}</h3>
+                                <h3 className="text-[16px] font-black text-stone-800 leading-tight">{event.title}</h3>
                             </div>
                         </div>
                         {googleMapsTransitUrl && (
@@ -270,7 +282,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div className="relative border-l-2 border-dashed border-stone-200 ml-4 py-2 space-y-6">
+                                <div className="relative border-l-2 border-dashed border-stone-200 ml-4 py-2 space-y-4 max-h-[55vh] overflow-y-auto pr-1">
                                     {currentDayData.events.map((evt, idx) => (
                                         <div key={idx} className="relative pl-6 pr-1">
                                             <div className="absolute top-[1.25rem] -left-[7px] w-3 h-3 bg-white border-4 border-stone-800 rounded-full shadow-sm z-10"></div>
