@@ -55,13 +55,13 @@
                     weather: { temp: "8°C", desc: "多雲時晴", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1670983245226-802d66ea5fdd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "transit", time: "06:00", title: "抵達關西機場", desc: "機場接送前往 The Lutheran 飯店。", dest: "The Lutheran Hotel", transit: { icon: Car, text: "機場接送", time: "約 60 分" } },
-                        { type: "attraction", time: "11:00 - 12:30", title: "黑門市場", desc: "高橋豆漿、和牛壽喜燒，並可安排章魚燒等小吃。", dest: "黑門市場", transit: { icon: Footprints, text: "步行 / 計程車", time: "約 10 分" } },
-                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：牛舌的檸檬", desc: "中午用餐時段。", dest: "牛舌的檸檬" },
-                        { type: "hotel", time: "14:00 - 15:00", title: "飯店 Check-in & 休息", desc: "建議住難波區，先補眠恢復體力。", dest: "難波", transit: { icon: Bed, text: "入住" } },
-                        { type: "shopping", time: "15:00 - 16:30", title: "心齋橋", desc: "可逛大丸百貨、PARCO、MooKEN 泡芙。", dest: "心齋橋" },
-                        { type: "shopping", time: "16:30 - 20:00", title: "道頓堀", desc: "月化粧、難波 City、UNIQLO / Zara / GU，並拍跑跑人。", dest: "道頓堀" },
-                        { type: "restaurant", time: "20:30 - 22:00", title: "晚餐（待確定）", desc: "候選：厲害的鰻魚料理店 / 心齋橋天婦羅。", dest: "心齋橋" }
+                        { type: "transit", time: "06:00", title: "抵達關西機場", desc: "機場接送前往 The Lutheran 飯店。", tips: "入境排隊時間常超過 40 分鐘，先把 Visit Japan Web 畫面與飯店地址截圖，出關後可直接給司機確認。", dest: "The Lutheran Hotel", transit: { icon: Car, text: "機場接送", time: "約 60 分" } },
+                        { type: "attraction", time: "11:00 - 12:30", title: "黑門市場", desc: "高橋豆漿、和牛壽喜燒，並可安排章魚燒等小吃。", tips: "早上 11 點後人潮快速增加，生食建議當場吃完；若要邊走邊吃，請留意店家是否提供站食區。", dest: "黑門市場", transit: { icon: Footprints, text: "步行 / 計程車", time: "約 10 分" } },
+                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：牛舌的檸檬", desc: "中午用餐時段。", tips: "熱門店午餐常需候位，建議先在門口登記；長輩可先到附近咖啡店休息，輪到再集合。", dest: "牛舌的檸檬" },
+                        { type: "hotel", time: "14:00 - 15:00", title: "飯店 Check-in & 休息", desc: "建議住難波區，先補眠恢復體力。", tips: "若尚未到入住時間可先寄放行李，貴重物品建議隨身；下午補眠 30 分鐘可降低晚間疲勞。", dest: "難波", transit: { icon: Bed, text: "入住" } },
+                        { type: "shopping", time: "15:00 - 16:30", title: "心齋橋", desc: "可逛大丸百貨、PARCO、MooKEN 泡芙。", tips: "商店街多為現金與刷卡並行，建議先設定集合點（如大丸正門），避免逛街走散。", dest: "心齋橋" },
+                        { type: "shopping", time: "16:30 - 20:00", title: "道頓堀", desc: "月化粧、難波 City、UNIQLO / Zara / GU，並拍跑跑人。", tips: "固力果看板區晚間非常擁擠，拍照可改到戎橋下木棧道，視角好且較安全；注意自行車與觀光船動線。", dest: "道頓堀" },
+                        { type: "restaurant", time: "20:30 - 22:00", title: "晚餐（待確定）", desc: "候選：厲害的鰻魚料理店 / 心齋橋天婦羅。", tips: "若當天臨時決定餐廳，建議 18:00 前先電話確認候位時間，避免全員久站等待。", dest: "心齋橋" }
                     ]
                 },
                 {
@@ -69,11 +69,11 @@
                     weather: { temp: "6°C", desc: "晴朗", icon: <CloudSun size={20}/> },
                     heroImage: "https://plus.unsplash.com/premium_photo-1723983555971-8dafb9ae7265?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "10:00 - 12:30", title: "大阪城天守閣", desc: "搭電梯直達頂層，欣賞戰國歷史建築。", dest: "大阪城" },
-                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：心齋橋附近鰻魚飯", desc: "地圖連結已備註於行程。", dest: "心齋橋" },
-                        { type: "attraction", time: "14:30 - 16:30", title: "四天王寺、通天閣", desc: "走訪日本最古老官立寺廟與五重塔。", dest: "四天王寺 / 通天閣" },
-                        { type: "attraction", time: "16:30 - 18:30", title: "梅田藍天大廈空中庭園", desc: "拍攝 360 度環繞夜景，並可逛阪急百貨、Grand Front Osaka。", dest: "梅田" },
-                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：壽喜燒", desc: "uOs habu-hatsu-shabu & Sukiyaki & Sushi / 其他候選：ゆめまる、利久牛舌。", dest: "梅田" }
+                        { type: "attraction", time: "10:00 - 12:30", title: "大阪城天守閣", desc: "搭電梯直達頂層，欣賞戰國歷史建築。", tips: "天守閣入場建議先線上購票，現場排隊可節省 20–30 分鐘；園區風大，外套要防風保暖。", dest: "大阪城" },
+                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：心齋橋附近鰻魚飯", desc: "地圖連結已備註於行程。", tips: "鰻魚飯多為炭火現烤，出餐較慢屬正常；可先點茶水與小菜，讓長輩小孩不會等太久。", dest: "心齋橋" },
+                        { type: "attraction", time: "14:30 - 16:30", title: "四天王寺、通天閣", desc: "走訪日本最古老官立寺廟與五重塔。", tips: "寺院參拜請保持低聲、拍照前先看告示；通天閣周邊街道窄，過馬路務必走行人號誌。", dest: "四天王寺 / 通天閣" },
+                        { type: "attraction", time: "16:30 - 18:30", title: "梅田藍天大廈空中庭園", desc: "拍攝 360 度環繞夜景，並可逛阪急百貨、Grand Front Osaka。", tips: "日落前 30 分鐘上樓可同時拍白天與夜景；頂樓風勢強，手機拍照建議加掛手腕繩。", dest: "梅田" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：壽喜燒", desc: "uOs habu-hatsu-shabu & Sukiyaki & Sushi / 其他候選：ゆめまる、利久牛舌。", tips: "壽喜燒口味較重，建議加點白飯與蔬菜平衡；店內多需脫外套，帶薄內搭較舒適。", dest: "梅田" }
                     ]
                 },
                 {
@@ -81,10 +81,10 @@
                     weather: { temp: "7°C", desc: "晴轉陰", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1558862107-d49ef2a04d72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30 - 11:30", title: "勝尾寺", desc: "早上寺院參訪。", dest: "勝尾寺" },
-                        { type: "restaurant", time: "12:00 - 13:30", title: "午餐、下午茶：wad 茶藝館", desc: "安排午餐與茶點休息。", dest: "wad 茶藝館" },
-                        { type: "restaurant", time: "16:30 - 18:00", title: "晚餐：燒肉萬兩（已訂位）", desc: "晚餐時段已訂位。", dest: "燒肉萬兩" },
-                        { type: "transit", time: "18:30 - 21:30", title: "移動至京都", desc: "搭乘 JR 快速前往京都車站。", dest: "京都車站", transit: { icon: Train, text: "JR 快速", time: "約 3 小時含轉移" } }
+                        { type: "attraction", time: "09:30 - 11:30", title: "勝尾寺", desc: "早上寺院參訪。", tips: "山區溫度比市區再低 2–3°C，建議帶暖暖包；達摩不倒翁拍照點多，請依動線單向前進。", dest: "勝尾寺" },
+                        { type: "restaurant", time: "12:00 - 13:30", title: "午餐、下午茶：wad 茶藝館", desc: "安排午餐與茶點休息。", tips: "茶席節奏較慢，若有下一站交通時程，點餐時可先告知店員希望的離席時間。", dest: "wad 茶藝館" },
+                        { type: "restaurant", time: "16:30 - 18:00", title: "晚餐：燒肉萬兩（已訂位）", desc: "晚餐時段已訂位。", tips: "已訂位仍建議提早 10 分鐘報到，日本店家對遲到較嚴格；可先確認是否接受分帳。", dest: "燒肉萬兩" },
+                        { type: "transit", time: "18:30 - 21:30", title: "移動至京都", desc: "搭乘 JR 快速前往京都車站。", tips: "晚間移動請把大件行李集中同一車廂，轉乘前先確認月台號碼，避免拖行李奔跑。", dest: "京都車站", transit: { icon: Train, text: "JR 快速", time: "約 3 小時含轉移" } }
                     ]
                 },
                 {
@@ -92,10 +92,10 @@
                     weather: { temp: "8°C", desc: "多雲", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30 - 12:30", title: "清水寺、二/三年坂", desc: "京都經典街區散策。", dest: "清水寺" },
-                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：奧丹湯豆腐", desc: "清水寺旁百年名店。", dest: "奧丹" },
-                        { type: "attraction", time: "15:00 - 17:30", title: "八坂神社、下鴨神社", desc: "參拜並可挑選御守。", dest: "八坂神社 / 下鴨神社" },
-                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：Gion Duck Rice", desc: "晚餐時段。", dest: "祇園" }
+                        { type: "attraction", time: "09:30 - 12:30", title: "清水寺、二/三年坂", desc: "京都經典街區散策。", tips: "二三年坂石板坡道較滑，建議穿防滑鞋；伴手禮先記店名，回程再買可減少提重物。", dest: "清水寺" },
+                        { type: "restaurant", time: "13:00 - 14:30", title: "午餐：奧丹湯豆腐", desc: "清水寺旁百年名店。", tips: "湯豆腐套餐偏清淡，怕餓可加點單品；榻榻米座位進出需脫鞋，建議穿好穿脫的襪鞋。", dest: "奧丹" },
+                        { type: "attraction", time: "15:00 - 17:30", title: "八坂神社、下鴨神社", desc: "參拜並可挑選御守。", tips: "神社腹地大、步行距離長，建議每 60–90 分鐘安排一次短休息與補水。", dest: "八坂神社 / 下鴨神社" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：Gion Duck Rice", desc: "晚餐時段。", tips: "祇園夜間巷道較暗，餐後返程建議結伴同行；若想拍花見小路，請避免阻擋住家門口。", dest: "祇園" }
                     ]
                 },
                 {
@@ -103,12 +103,12 @@
                     weather: { temp: "9°C", desc: "晴時多雲", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1624253321171-1be53e12f5f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "09:30 - 11:30", title: "伏見稻荷大社", desc: "拍攝千本鳥居。", dest: "伏見稻荷大社" },
-                        { type: "restaurant", time: "12:00 - 13:30", title: "錦市場（景點 / 午餐）", desc: "京都廚房在地美食巡禮。", dest: "錦市場" },
-                        { type: "attraction", time: "13:30 - 14:30", title: "平等院", desc: "宇治經典寺院。", dest: "平等院" },
-                        { type: "attraction", time: "14:30 - 17:30", title: "宇治抹茶", desc: "中村藤吉本店、抹茶巴菲與手刷體驗。", dest: "宇治" },
-                        { type: "attraction", time: "17:30 - 18:30", title: "伏水酒藏小路", desc: "品嚐日本酒，感受伏見老街酒造氛圍。", dest: "伏見" },
-                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：三嶋亭壽喜燒（高島屋分店）", desc: "分店價格較親民且品質佳。", dest: "高島屋" }
+                        { type: "attraction", time: "09:30 - 11:30", title: "伏見稻荷大社", desc: "拍攝千本鳥居。", tips: "千本鳥居清晨與傍晚最少人；若只走主線約 60–90 分鐘，請先約定折返集合時間。", dest: "伏見稻荷大社" },
+                        { type: "restaurant", time: "12:00 - 13:30", title: "錦市場（景點 / 午餐）", desc: "京都廚房在地美食巡禮。", tips: "市場多數店家傍晚前收攤，想吃的店先買先排；請避免邊走邊吃，站到店前再享用。", dest: "錦市場" },
+                        { type: "attraction", time: "13:30 - 14:30", title: "平等院", desc: "宇治經典寺院。", tips: "鳳凰堂內部參觀有梯次限制，先領整理券再逛庭園最順；博物館內多區域禁止拍照。", dest: "平等院" },
+                        { type: "attraction", time: "14:30 - 17:30", title: "宇治抹茶", desc: "中村藤吉本店、抹茶巴菲與手刷體驗。", tips: "抹茶甜點店熱門時段需候位，建議分組排隊；咖啡因較高，晚間怕失眠者可選焙茶。", dest: "宇治" },
+                        { type: "attraction", time: "17:30 - 18:30", title: "伏水酒藏小路", desc: "品嚐日本酒，感受伏見老街酒造氛圍。", tips: "試飲前先確認每款酒精濃度與份量，家族行程建議共飲分杯；未成年不可飲酒。", dest: "伏見" },
+                        { type: "restaurant", time: "18:30 - 20:30", title: "晚餐：三嶋亭壽喜燒（高島屋分店）", desc: "分店價格較親民且品質佳。", tips: "高島屋分店晚餐時段人潮多，建議預留 15 分鐘找樓層；用餐後可直接在百貨補買伴手禮。", dest: "高島屋" }
                     ]
                 },
                 {
@@ -116,9 +116,9 @@
                     weather: { temp: "8°C", desc: "多雲", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1578469645742-46cae010e5d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "attraction", time: "11:00 - 14:00", title: "嵐山地區", desc: "竹林小徑、天龍寺、渡月橋。", dest: "嵐山" },
-                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：松籟庵（湯豆腐）", desc: "桂川畔湯豆腐名店。", dest: "松籟庵" },
-                        { type: "attraction", time: "14:30 - 16:30", title: "金閣寺", desc: "北山文化代表景點。", dest: "金閣寺" }
+                        { type: "attraction", time: "11:00 - 14:00", title: "嵐山地區", desc: "竹林小徑、天龍寺、渡月橋。", tips: "竹林小徑早上人較少，拍照更順；渡月橋風大且河畔濕冷，請準備圍巾與防風外套。", dest: "嵐山" },
+                        { type: "restaurant", time: "12:30 - 14:00", title: "午餐：松籟庵（湯豆腐）", desc: "桂川畔湯豆腐名店。", tips: "松籟庵位於山坡步道旁，抵達前有一段上坡；長輩可放慢步速並預留 10 分鐘緩衝。", dest: "松籟庵" },
+                        { type: "attraction", time: "14:30 - 16:30", title: "金閣寺", desc: "北山文化代表景點。", tips: "金閣寺為單向參觀路線，入場前先上洗手間；御守與朱印處常排隊，想購買請預留時間。", dest: "金閣寺" }
                     ]
                 },
                 {
@@ -126,7 +126,7 @@
                     weather: { temp: "7°C", desc: "晴", icon: <CloudSun size={20}/> },
                     heroImage: "https://images.unsplash.com/photo-1492571350019-22de08371fd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
                     events: [
-                        { type: "transit", time: "09:30 - 11:30", title: "前往機場", desc: "搭乘 JR 特急 Haruka 直達機場，準備返程。", dest: "關西機場", transit: { icon: Train, text: "JR Haruka", time: "約 90 分" } }
+                        { type: "transit", time: "09:30 - 11:30", title: "前往機場", desc: "搭乘 JR 特急 Haruka 直達機場，準備返程。", tips: "Haruka 指定席建議提前劃位，行李可放車廂端部置物區；抵達機場後先看航空公司櫃檯區域。", dest: "關西機場", transit: { icon: Train, text: "JR Haruka", time: "約 90 分" } }
                     ]
                 }
             ],
